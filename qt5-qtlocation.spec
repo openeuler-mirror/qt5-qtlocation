@@ -2,11 +2,13 @@
 
 Name:             qt5-qtlocation
 Version:          5.11.1
-Release:          6
+Release:          7
 Summary:          Qt5 module for Location framework
 License:          LGPLv2 with exceptions or GPLv3 with exceptions
 Url:              http://www.qt.io
 Source0:          https://download.qt.io/new_archive/qt/5.11/5.11.1/submodules/qtlocation-everywhere-src-5.11.1.tar.xz
+
+Patch0:           qtlocation-gcc10.patch
 
 BuildRequires:    qt5-qtbase-devel >= 5.9.0 qt5-qtbase-private-devel pkgconfig(zlib)
 BuildRequires:    pkgconfig(icu-i18n) pkgconfig(libssl) pkgconfig(libcrypto) qt5-qtdeclarative-devel >= 5.9.0
@@ -83,6 +85,9 @@ cd -
 %{_qt5_examplesdir}/
 
 %changelog
+* Sat Jul 31 2021 wangyong<wangyong187@huawei.com> - 5.11.1-7
+- Patch for GCC-10
+
 * Mon Sep 14 2020 liuweibo <liuweibo10@huawei.com> - 5.11.1-6
 - Fix Source0
 
