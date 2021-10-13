@@ -1,15 +1,17 @@
 %global __provides_exclude_from ^(%{_qt5_archdatadir}/qml/.*\\.so|%{_qt5_plugindir}/.*\\.so)$
 
 Name:             qt5-qtlocation
-Version:          5.11.1
-Release:          7
+Version:          5.15.2
+Release:          1
 Summary:          Qt5 module for Location framework
 License:          LGPLv2 with exceptions or GPLv3 with exceptions
 Url:              http://www.qt.io
-Source0:          https://download.qt.io/new_archive/qt/5.11/5.11.1/submodules/qtlocation-everywhere-src-5.11.1.tar.xz
+%global majmin %(echo %{version} | cut -d. -f1-2)
+Source0:          https://download.qt.io/official_releases/qt/%{majmin}/%{version}/submodules/qtlocation-everywhere-src-%{version}.tar.xz
 
 Patch0:           qtlocation-gcc10.patch
 
+BuildRequires: make
 BuildRequires:    qt5-qtbase-devel >= 5.9.0 qt5-qtbase-private-devel pkgconfig(zlib)
 BuildRequires:    pkgconfig(icu-i18n) pkgconfig(libssl) pkgconfig(libcrypto) qt5-qtdeclarative-devel >= 5.9.0
 %{?_qt5:Requires: %{_qt5} = %{_qt5_version}}
@@ -85,6 +87,9 @@ cd -
 %{_qt5_examplesdir}/
 
 %changelog
+* Wed Oct 13 2021 peijiankang <peijiankang@kylinos.cn> - 5.15.2-1
+- update to upstream version 5.15.2
+
 * Sat Jul 31 2021 wangyong<wangyong187@huawei.com> - 5.11.1-7
 - Patch for GCC-10
 
