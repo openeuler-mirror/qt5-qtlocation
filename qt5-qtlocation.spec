@@ -2,7 +2,7 @@
 
 Name:             qt5-qtlocation
 Version:          5.15.2
-Release:          1
+Release:          2
 Summary:          Qt5 module for Location framework
 License:          LGPLv2 with exceptions or GPLv3 with exceptions
 Url:              http://www.qt.io
@@ -10,6 +10,9 @@ Url:              http://www.qt.io
 Source0:          https://download.qt.io/official_releases/qt/%{majmin}/%{version}/submodules/qtlocation-everywhere-src-%{version}.tar.xz
 
 Patch0:           qtlocation-gcc10.patch
+%ifarch riscv64
+Patch50001:       modify_qtendl.patch
+%endif
 
 BuildRequires: make
 BuildRequires:    qt5-qtbase-devel >= 5.9.0 qt5-qtbase-private-devel pkgconfig(zlib)
@@ -87,6 +90,10 @@ cd -
 %{_qt5_examplesdir}/
 
 %changelog
+* Mon Apr 4 2022 Jingwiw <ixoote@gmail.com> - 5.15.2-2
+- add modify_qtendl.patch to fix endl problem by qt version 
+  BUG: https://bugreports.qt.io/browse/QTBUG-82680
+
 * Wed Oct 13 2021 peijiankang <peijiankang@kylinos.cn> - 5.15.2-1
 - update to upstream version 5.15.2
 
